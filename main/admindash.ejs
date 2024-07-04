@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+     <style>
+        /* General Styles */
+        body {
+            font-family: "Arial", sans-serif;
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background:#f16407;
+            color: black;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .logo{
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+            font-weight: 100;
+        }
+
+        nav ul li a {
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 20px;
+        }
+
+        nav ul li a:hover {
+            color:white;
+            padding: 2px;
+            background-color:#5cb85c;
+            border-radius: 5px;
+        }
+
+        /* Admin Dashboard Specific Styles */
+        #admin-dashboard {
+            background-image: url("/images/reports.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dashboard h1 {
+            text-align: center;
+        }
+
+        .dashboard .logout {
+            align-self: flex-end;
+        }
+
+        .dashboard .content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .dashboard .content > div {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: center; 
+        }
+
+        ul li {
+            display: inline-block;
+            /* background: rgba(255, 255, 255, 0.8); */
+            background: #5cb85c;
+            margin: 3px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        a {
+            color: #1a0dc8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="datetime-local"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #5cb85c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+     
+        
+        .logo{
+            font-size: 1.8em;;
+        }
+        .sport{
+            background-color:white;
+            padding: 40px;
+            margin:40px;
+            border-radius: 10px;
+        }
+.session-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden; 
+    display: flex;
+    justify-content: space-between;
+}
+
+.session-info {
+    flex: 1; 
+}
+
+.session-actions {
+    display: flex;
+    align-items: center;
+}
+
+.session-actions form {
+    margin-left: 10px; 
+}
+
+.joined-label {
+    background-color:#5cb85c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+</style>
+<body id="admin-dashboard">
+    <header>
+        <nav>
+            <div class="logo">League Scheduler</div>
+            <br>
+            <ul>
+                <li><a href="#sports">Sports</a></li>
+                <li><a href="#sessions">Sessions</a></li>
+                <li><a href="/change">Change Password</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/reports">View Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="sport" id="sports">
+            <h2>Sports</h2>
+            <ul>
+                <% sports.forEach(sport => { %>
+                    <li><%= sport.name %></li>
+                <% }) %>
+            </ul>
+            <hr>
+            <h2>Create Sport</h2>
+            <form action="/create-sport" method="POST">
+                <label for="name">Sport Name:</label>
+                <input type="text" name="name" id="name" required />
+                <button type="submit">Create Sport</button>
+            </form>
+        </div>
+        <div class="sport" id="sessions">
+            <h2>All Sessions</h2>
+<ul>
+    <% sessions.forEach(session => { %>
+        <li id="session_<%= session.id %>" class="session-item">
+            <div class="session-info">
+                <strong>Sport:</strong> <%= session.sport_name %><br />
+                <strong>Teams:</strong> <%= session.team1 %> vs <%= session.team2 %><br />
+                <strong>Date:</strong> <%= session.date %><br />
+                <strong>Venue:</strong> <%= session.venue %><br />
+                <strong>Created by:</strong> <%= session.creator_name %><br />
+            </div>
+            <div class="session-actions">
+                <% if (session.is_joined) { %>
+                    <span class="joined-label">Joined</span>
+                <% } else { %>
+                    <form id="joinForm_<%= session.id %>" action="/join-session" method="POST">
+                        <input type="hidden" name="session_id" value="<%= session.id %>">
+                        <button type="submit" onclick="joinSession(<%= session.id %>)">Join</button>
+                    </form>
+                    <form action="/delete-session/<%= session.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this session?');">
+                        <button type="submit">Delete</button>
+                    </form>
+                <% } %>
+            </div>
+        </li>
+    <% }) %>
+</ul>
+<hr>
+            <h2>Create Session</h2>
+            <form action="/create-session" method="POST">
+                <label for="sport_id">Sport:</label>
+                <select name="sport_id" id="sport_id" required>
+                    <% sports.forEach(sport => { %>
+                        <option value="<%= sport.id %>"><%= sport.name %></option>
+                    <% }) %>
+                </select>
+                <br />
+                <label for="team1">Team 1:</label>
+                <input type="text" name="team1" id="team1" required />
+                <br />
+                <label for="team2">Team 2:</label>
+                <input type="text" name="team2" id="team2" required />
+                <br />
+                <label for="additional_players">Additional Players:</label>
+                <input type="text" name="additional_players" id="additional_players" />
+                <br />
+                <label for="date">Date:</label>
+                <input type="datetime-local" name="date" id="date" required />
+                <br />
+                <label for="venue">Venue:</label>
+                <input type="text" name="venue" id="venue" required />
+                <br />
+                <button type="submit">Create Session</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function joinSession(sessionId) {
+            const form = document.getElementById(`joinForm_${sessionId}`);
+            const button = form.querySelector('button');
+    
+            fetch('/join-session', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    button.innerText = 'Joined';
+                    button.style.backgroundColor = '#555';
+                    button.style.cursor = 'default';
+                    button.disabled = true; // Optionally disable the button after joining
+                } else {
+                    alert('Failed to join session. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error joining session:', error);
+                alert('An error occurred while joining the session.');
+            });
+        }
+    </script>
+    </body></html>
+    

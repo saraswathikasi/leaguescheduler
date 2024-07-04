@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League Scheduler</title>
+    <style>
+        /* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #f16407;
+    color: white;
+    padding: 10px 0;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header ul li {
+    margin-left: 20px;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    transition: background 0.3s;
+}
+
+header ul li a:hover {
+    background: #555;
+    border-radius: 4px;
+}
+
+/* Home Section */
+#home {
+    background: url('https://t4.ftcdn.net/jpg/04/61/87/15/360_F_461871566_HjDzxGg7labHajuQD3yPvxRx0Jfh8zFP.jpg') no-repeat center center/cover;
+    color: black;
+    text-align: center;
+    padding: 300px 20px;
+}
+
+#home .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#home h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+#home p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+#home .cta {
+    display: inline-block;
+    background: #ff7e5f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+#home .cta:hover {
+    background: #feb47b;
+}
+
+/* Features Section */
+#features {
+    padding: 60px 20px;
+    background: #f9f9f9;
+}
+
+.feature-list {
+    max-width: 800px;
+    margin: 0 auto ;
+    padding: 0;
+   list-style: none;
+}
+.feature {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.feature h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Feedback Section */
+#feedback {
+    padding: 60px 20px;
+    background: #fff;
+}
+
+.wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-box {
+    background: rgba(247, 182, 61, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease,box-shadow 0.3s ease;
+}
+
+.form-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.input-box {
+    margin-bottom: 15px;
+}
+
+.input-box label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background: #5cb85c;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+input[type="submit"]:hover {
+    background: #4cae4c;
+}
+.thank-you {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #dff0d8;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .thank-you.show {
+            display: block;
+        }
+
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+
+        </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div clasas="logo">League Scheduler</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#feedback">FeedbackForm</a></li>
+                <li><a href="login">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section id="home">
+            <div class="hero-content">
+                <h1>Welcome to League Scheduler</h1>
+                <p>Organizing a league is not just about scheduling games; it's about creating a stage for athletes to shine, communities to come together, and dreams to be realized. Every match you schedule is a story waiting to be written.</p>
+                <a href="login" class="cta">Get Started</a>
+            </div>
+        </section>
+         <section id="features">
+            <ol class="feature-list">
+                <li class="feature">
+                <h3>Games</h3>
+                <p>The admin can create a game and games been played by the players based on their wish.</p>
+            </li>
+                <li class="feature">
+                <h3>Create Sessions</h3>
+                <p>The interested person can create their own game they wish to play either admin or player.</p>
+            </li>
+               <li class="feature">
+                <h3>Join Sessions</h3>
+                <p>In this the admin has the right to join the session and based on their willing he can also delete the session.</p>
+               </li>
+                <li class="feature">
+                <h3>Change of Password</h3>
+                <p>In this if the user want to change password they can change.</p>
+            </li>
+                <li class="feature">
+                <h3>User Integrity</h3>
+                <p>We save the user details and passwords in a encrypted way.</p>
+            </li>
+                <li class="feature">
+                <h3>Match Schedules</h3>
+                <p>Never miss a game with our comprehensive schedules</p>
+            </li>
+        </ol>
+        </section>
+            <div id="feedback">
+            <div class="wrapper">
+                <div class="form-box login">
+           <h1>Give your Feedback here!!!</h1>
+                    <form action = "/contactsubmit" method = "GET" id="feedbackForm" >
+                        <div class = "input-box">
+                
+                            <label><b>EMAIL: </b></label>
+                            <input type = "email" name = "email" class = "form-control" placeholder = "Enter your email..." required><br><br>
+                            <label><b>PHONE NUMBER: </b></label>
+                            <input type = "phone" name = "phone" class = "form-control" placeholder = "Enter your phone number..."required><br><br>
+                            <label><b>REVIEW/FEEDBACK: </b></label>
+                            <input  type = "text" name = "review" class = "form-control" placeholder = "Enter your feedback about product..." required>
+                        <br><br>
+                        <input type = "submit" class = "btn btn-success" style = "width:30%;font-weight: bold;" value = "SUBMIT"><br>
+                        </div>
+                    </form>
+                    <div class="thank-you">Thank you</
+                </div>
+                </div>
+                </div>
+        <footer>
+            <p>&copy; 2024 League Scheduler.All rights reserved</p>
+        </footer>
+</body>
+<script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        var feedbackInput = document.getElementById('feedbackInput');
+        console.log('Feedback submitted: ' + feedbackInput.value); 
+        feedbackInput.value = '';
+    });
+
+    </script>
+</html>

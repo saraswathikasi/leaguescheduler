@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Dashboard</title>
+    <style>
+   
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+header {
+    background: #f16407;
+    color: white;
+    padding: 10px 0;
+}
+
+header h1 {
+    margin: 0;
+    padding: 0 20px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header ul li {
+    margin-left: 20px;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    transition: background 0.3s;
+}
+
+header ul li a:hover {
+    background: #555;
+    border-radius: 4px;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Dashboard */
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Sessions Section */
+.sess {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sessions-list {
+    list-style: none;
+    padding: 0;
+}
+
+.session-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.session-info p {
+    margin: 0;
+}
+
+.session-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.session-actions button {
+    background: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.session-actions button:hover {
+    background: #4cae4c;
+}
+
+/* Create Session Section */
+.styl {
+    flex: 1;
+}
+
+.create-session {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.create-session form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.create-session label {
+    margin: 0;
+    color: #333;
+}
+
+.create-session input,
+.create-session select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.create-session button {
+    background: #5cb85c;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.create-session button:hover {
+    background: #4cae4c;
+}
+
+      </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome, <%= user.name %></h1>
+        <nav>
+          <ul class="left-side">
+            <li><a href="/playerdash"></a></li>
+            </ul>
+            <ul>
+            <li><a href="/change">Change Password</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </nav>
+      </header>
+      <div class="container">
+        <div class="dashboard">
+          <div class="sess">
+            <h2>Sessions</h2>
+            <ul class="sessions-list">
+              <% sessions.forEach(session => { %>
+                <li class="session-item">
+                  <div class="session-info">
+                    <p>
+                      Sport: <%= session.sport_name %><br>
+                      Teams: <%= session.team1 %> vs <%= session.team2 %><br>
+                      Date: <%= session.date %><br>
+                      Venue: <%= session.venue %>
+                    </p>
+                  </div>
+                  <div class="session-actions">
+                    <% if (session.is_joined) { %>
+                      (Joined)
+                    <% } else { %>
+                      <form action="/join-player-session" method="POST">
+                        <input type="hidden" name="session_id" value="<%= session.id %>">
+                        <button type="submit">Join</button>
+                      </form>
+                    <% } %>
+                    <% if (session.creator_id === user.id) { %>
+                      <form action="/delete-player-session/<%= session.id %>" method="POST">
+                        <button type="submit">Delete</button>
+                      </form>
+                    <% } %>
+                  </div>
+                </li>
+              <% }) %>
+            </ul>
+          </div>
+    
+          <div class="styl">
+            <div class="create-session">
+            <h2>Create Session</h2>
+            <form action="/create-player-session" method="POST">
+              <label for="sport_id">Sport:</label>
+              <select name="sport_id" id="sport_id">
+                <% sports.forEach(sport => { %>
+                  <option value="<%= sport.id %>"><%= sport.name %></option>
+                <% }) %>
+              </select>
+              <label for="team1">Team 1:</label>
+              <input type="text" name="team1" id="team1" required>
+              <label for="team2">Team 2:</label>
+              <input type="text" name="team2" id="team2" required>
+              <label for="additional_players">Additional Players:</label>
+              <input type="number" name="additional_players" id="additional_players" required>
+              <label for="date">Date:</label>
+              <input type="datetime-local" name="date" id="date" required>
+              <label for="venue">Venue:</label>
+              <input type="text" name="venue" id="venue" required>
+              <button type="submit">Create Session</button>
+            </form>
+          </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+             background: linear-gradient(120deg,#ff7e5f 33%, #feb47b 33%, #6dd5ed 66%, #43b7d1 66%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        header{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        h2 {
+            color: #333;
+            margin: 0;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            transition: transform 0.3s,box-shadow 0.3s;
+        }
+        form:hover, form:focus-within {
+                transform: translateY(-10px);
+                 box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: black;
+        }
+
+        input[type="text"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+        </style>
+</head>
+<body>
+    <header>
+    <h2>Change Password</h2>
+    </header>
+    <form action="/change-password" method="POST">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" required autocomplete="email"><br>
+        <div>
+        <label for="currentPassword">Current Password:</label>
+        <input type="password" name="currentPassword" id="currentPassword" required autocomplete="current-password">
+        </div>
+        <div>
+        <label for="newPassword">New Password:</label>
+        <input type="password" name="newPassword" id="newPassword" required autocomplete="new-password">
+        </div>
+        <button type="submit">Change Password</button>
+</body>
+</html>
